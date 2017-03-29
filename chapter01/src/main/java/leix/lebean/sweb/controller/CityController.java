@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Name:CityController
+ * Description:与城市信息相关业务的API
+ * Author:leix
+ * Time: 2017/3/28 14:02
+ */
 @RestController
 @Api(value = "城市服务", description = "与城市数据相关的服务接口")
 public class CityController {

@@ -12,6 +12,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static com.google.common.base.Predicates.or;
 import static springfox.documentation.builders.PathSelectors.regex;
 
+/**
+ * Name:Swagger2Config
+ * Description:配制Swagger2
+ * Author:leix
+ * Time: 2017/3/28 14:02
+ */
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
