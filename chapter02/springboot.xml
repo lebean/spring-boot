@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="springboot" default="all">
+  
+  
+  <property file="springboot.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.gradle:_ch.qos.logback:logback-classic:1.1.7.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.7/9865cf6994f9ff13fce0bf93f2054ef6c65bb462/logback-classic-1.1.7.jar"/>
+  </path>
+  
+  <path id="library.gradle:_ch.qos.logback:logback-core:1.1.7.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.7/7873092d39ef741575ca91378a6a21c388363ac8/logback-core-1.1.7.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.alibaba:druid:1.0.25.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.alibaba/druid/1.0.25/2057685b8d9bbd75242e920183ff647c68109579/druid-1.0.25.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.4/de3570327cf8d1d4f37920535c51a1f74225a6de/jackson-annotations-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.4/ca365c0817cc345ea831cae7c4e9b42a72b32281/jackson-core-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.4/1c36c81e79cacdf48116afba8495e3393d267ba1/jackson-databind-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.dataformat/jackson-dataformat-xml/2.8.4/4a22cfd94a889fdd50d57835b04b13aeca2ee846/jackson-dataformat-xml-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/2.8.4/b345f237bad9534973cd7c330a9d9cc8d49fa633/jackson-dataformat-yaml-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-joda:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-joda/2.8.4/1765145cccfd89a884afccee4cbf554091fc0a16/jackson-datatype-joda-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.8.4/6c0ceb3c9fed2e225b0cc2a45533574df393f606/jackson-jaxrs-base-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.8.4/839366ece31829a19cb15719b2b54a3f9f91148d/jackson-jaxrs-json-provider-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.8.4/d2eec7cf6c4284f7d5f0b1a72dc7cfa9d6bb579d/jackson-module-jaxb-annotations-2.8.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.woodstox:woodstox-core:5.0.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml.woodstox/woodstox-core/5.0.2/47cf6e83bf5842662cd5eea999eb139904f21bca/woodstox-core-5.0.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml:classmate:1.3.3.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.3/864c8e370a691e343210cc7c532fc198cee460d8/classmate-1.3.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.github.jsqlparser:jsqlparser:0.9.5.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.github.jsqlparser/jsqlparser/0.9.5/b1ee308d5a745b4e6a98e83af9a75a6f2e5828d0/jsqlparser-0.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.github.pagehelper:pagehelper:4.1.6.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.github.pagehelper/pagehelper/4.1.6/48eb74110c115b01f4fe8d184845247eb0d22b0f/pagehelper-4.1.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.google.code.findbugs:annotations:2.0.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/2.0.1/9ef6656259841cebfb9fb0697bb122ada4485498/annotations-2.0.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.google.code.gson:gson:2.8.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.google.guava:guava:18.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/18.0/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.jayway.jsonpath:json-path:2.2.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.2.0/22290d17944bd239fabf5ac69005a60a7ecbbbcb/json-path-2.2.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.rabbitmq:amqp-client:3.6.5.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.rabbitmq/amqp-client/3.6.5/59e11141636ba2469a6fdd8c986d622480c3e239/amqp-client-3.6.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.rabbitmq:http-client:1.0.0.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/com.rabbitmq/http-client/1.0.0.RELEASE/40e98305d55d300fe1db33a75579c3b9918b9517/http-client-1.0.0.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_commons-codec:commons-codec:1.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.10/4b95f4897fa13f2cd904aee711aeafc0c5295cd8/commons-codec-1.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_commons-io:commons-io:2.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-core:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-core/2.2.2/e7900cffa68f429cc61434eafd699130f6379e/springfox-core-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-schema:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-schema/2.2.2/d1b82a5d5de5edebc8953f8e5c38fb09055497ba/springfox-schema-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-spi:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-spi/2.2.2/6a2fcbb940c3820102e1d84f78099ff69a5171f3/springfox-spi-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-spring-web:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-spring-web/2.2.2/6885873e1ac321a370c6f22ae4f1599cbef7d632/springfox-spring-web-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-swagger-common:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-swagger-common/2.2.2/66af002c114b8b7c898325f4334497ddf2ff63d6/springfox-swagger-common-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-swagger-ui:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-swagger-ui/2.2.2/1aefba01c0180325a56e450a26e2c72514f5b3/springfox-swagger-ui-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.springfox:springfox-swagger2:2.2.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.springfox/springfox-swagger2/2.2.2/f43490ebb5dbc2dd869867683cfe41bcd84c15f2/springfox-swagger2-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.swagger:swagger-annotations:1.5.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-annotations/1.5.10/246ec68bce560227d3633d5ab5979437544bd6dc/swagger-annotations-1.5.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.swagger:swagger-core:1.5.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-core/1.5.10/4627ea42857b7a72df6863f0cd7acb51fb4e0e29/swagger-core-1.5.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.swagger:swagger-jaxrs:1.5.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-jaxrs/1.5.10/f57ca43fa2bd172ac572bd02d92a4ee9630eed31/swagger-jaxrs-1.5.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.swagger:swagger-jersey2-jaxrs:1.5.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-jersey2-jaxrs/1.5.10/f640a1d4e4c6a465bc04787dcca51918753de153/swagger-jersey2-jaxrs-1.5.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_io.swagger:swagger-models:1.5.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/io.swagger/swagger-models/1.5.10/da29e4f4f7cff80b1ef134b0f3805013be443e58/swagger-models-1.5.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_javax.annotation:javax.annotation-api:1.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_javax.validation:validation-api:1.1.0.final.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_javax.ws.rs:javax.ws.rs-api:2.0.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0.1/104e9c2b5583cfcfeac0402316221648d6d8ea6b/javax.ws.rs-api-2.0.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_joda-time:joda-time:2.9.5.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.5/5f01da7306363fad2028b916f3eab926262de928/joda-time-2.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_junit:junit:4.12.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"/>
+  </path>
+  
+  <path id="library.gradle:_mysql:mysql-connector-java:5.1.40.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.40/ef2a2ceab1735eaaae0b5d1cccf574fb7c6e1c52/mysql-connector-java-5.1.40.jar"/>
+  </path>
+  
+  <path id="library.gradle:_net.minidev:accessors-smart:1.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.1/a527213f2fea112a04c9bdf0ec0264e34104cd08/accessors-smart-1.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_net.minidev:json-smart:2.2.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.2.1/5b9e5df7a62d1279b70dc882b041d249c4f0b002/json-smart-2.2.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.commons:commons-lang3:3.2.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.2.1/66f13681add50ca9e4546ffabafaaac7645db3cf/commons-lang3-3.2.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.httpcomponents:httpclient:4.5.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.2/733db77aa8d9b2d68015189df76ab06304406e50/httpclient-4.5.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.httpcomponents:httpcore:4.4.5.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.5/e7501a1b34325abb00d17dde96150604a0658b54/httpcore-4.4.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.6.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.6/960834b5abc6b2135250487abf6c060a0fa5a22e/tomcat-embed-core-8.5.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.6.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.6/a102298d8dc72f4065533d5962953d753b172602/tomcat-embed-el-8.5.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.6.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.6/6f6940a216b380ea8506530c374fcfeef820ba54/tomcat-embed-websocket-8.5.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat:tomcat-jdbc:8.5.6.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-jdbc/8.5.6/feb10a9e22f70565c7556f327b0481dba8587bbc/tomcat-jdbc-8.5.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat:tomcat-juli:8.5.6.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-juli/8.5.6/83d2d1e3362ecca504f3bf8ed1bc4cc451754d24/tomcat-juli-8.5.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.aspectj:aspectjrt:1.8.9.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.9/87372d9e2323313bec24b09a325bfea8ae0eb867/aspectjrt-1.8.9.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.aspectj:aspectjweaver:1.8.9.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.9/db28774f477f07220eac18d5ec9c4e01f48589d7/aspectjweaver-1.8.9.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.assertj:assertj-core:2.5.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/2.5.0/fcd21db4c5f33e5dcac69bf1816415fe0647582f/assertj-core-2.5.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.codehaus.woodstox:stax2-api:3.1.4.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.codehaus.woodstox/stax2-api/3.1.4/ac19014b1e6a7c08aad07fe114af792676b685b7/stax2-api-3.1.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.5.0-b05/51becf370a71dad73e6bcc554efb7246ad24c492/aopalliance-repackaged-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2.external:asm-all-repackaged:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/asm-all-repackaged/2.5.0-b05/fdaef52d078f8fb283cf64723d51e3ff827ec444/asm-all-repackaged-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2.external:javax.inject:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.5.0-b05/aad1872e1bf5e573229b7ec143d6f83f33b753e4/javax.inject-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:class-model:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/class-model/2.5.0-b05/b2c3f61b452ec6fe3406face9f29359c8dfee2fe/class-model-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:config-types:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/config-types/2.5.0-b05/3870dd88220b99fc6be1f4b54aeb8442aed3c3a6/config-types-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2-api:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.5.0-b05/d54a52f5b869b247348cb0ec08edd432c22ef65f/hk2-api-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2-config:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-config/2.5.0-b05/54a48389905d84fe9840d9016ad3c4dcc358f445/hk2-config-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2-core:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-core/2.5.0-b05/cff50bf8954aa598fca66c741c206168ac3802fd/hk2-core-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2-locator:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.5.0-b05/bed6e7565ce9491a53f047c17e3951b4dfd101fa/hk2-locator-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2-runlevel:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-runlevel/2.5.0-b05/ecbe98ddb2365f083d1bc407bb564951d970de98/hk2-runlevel-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2-utils:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.5.0-b05/ede783b3e16339f83603e3293c83bda7a88526bc/hk2-utils-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:hk2:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2/2.5.0-b05/8d407b86c3867f72abbcfea82d306e4effd6093d/hk2-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:osgi-resource-locator:1.0.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/4ed2b2d4738aed5786cfa64cba5a332779c4c708/osgi-resource-locator-1.0.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.hk2:spring-bridge:2.5.0-b05.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/spring-bridge/2.5.0-b05/5a06624b45c1b6b4a82f87bc0f0e9f3c4fd36f5a/spring-bridge-2.5.0-b05.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.bundles.repackaged:jersey-guava:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.23.2/eead3375706f2d5df991e14821efe509bfb182e0/jersey-guava-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.containers:jersey-container-servlet-core:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.23.2/c9937b31b90d61bd543f6805f93b6c394de6e842/jersey-container-servlet-core-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.containers:jersey-container-servlet:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet/2.23.2/47da89ccedf144858c1a604b69c9b9515c2c9ea/jersey-container-servlet-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.core:jersey-client:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.23.2/90ea1d2edb93653d15fce3c3b4a20f2237690900/jersey-client-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.core:jersey-common:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.23.2/84df56324789921fb408985dc1355f628de0b80c/jersey-common-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.core:jersey-server:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.23.2/f17025b8e32b48bee43b2c9ca40e21fc90cf38fb/jersey-server-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.ext:jersey-bean-validation:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-bean-validation/2.23.2/da31d624a9f1c0820a9138d49fcc593b685c5804/jersey-bean-validation-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.ext:jersey-entity-filtering:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-entity-filtering/2.23.2/f2d453e79ccf4c1f6e6a62553ff6fa91a3b19820/jersey-entity-filtering-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.ext:jersey-spring3:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.23.2/e4b2030dccde4aae0816dabffa93e3ba57c28dfb/jersey-spring3-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.media:jersey-media-jaxb:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-jaxb/2.23.2/25c2d322e193371ab800367f553207290da1cb0b/jersey-media-jaxb-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.media:jersey-media-json-jackson:2.23.2.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.23.2/d1e998ab7f00dbdbc543b1a916f63c2616c202ab/jersey-media-json-jackson-2.23.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.glassfish.jersey.media:jersey-media-multipart:2.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.1/b644da29cd7d03ae716920e6478e5783bfc3f1f9/jersey-media-multipart-2.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hibernate:hibernate-validator:5.2.4.final.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/5.2.4.Final/fb18766b576aa6632bcfe9a20a023cbd52bf9769/hibernate-validator-5.2.4.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.javassist:javassist:3.20.0-ga.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.20.0-GA/a9cbcdfb7e9f86fbc74d3afae65f2248bfbf82a0/javassist-3.20.0-GA.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.jboss.logging:jboss-logging:3.3.0.final.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.0.Final/3616bb87707910296e2c195dc016287080bba5af/jboss-logging-3.3.0.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.json:json:20140107.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.json/json/20140107/d1ffca6e2482b002702c6a576166fd685e3370e3/json-20140107.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.jvnet.mimepull:mimepull:1.8.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.jvnet.mimepull/mimepull/1.8/e0b2ed6e9ccaafe3e96294a181c09e3aae18aa90/mimepull-1.8.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mapstruct:mapstruct:1.0.0.cr1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct/1.0.0.CR1/a1b8ecbddfc7772bf7f1a7d4e73f7cefb900bad4/mapstruct-1.0.0.CR1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mockito:mockito-core:1.10.19.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/1.10.19/e8546f5bef4e061d8dd73895b4e8f40e3fe6effe/mockito-core-1.10.19.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:1.1.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/1.1.1/c7b01dca4aa80ec04c5dacf0348bb8c6ef40e9ce/mybatis-spring-boot-autoconfigure-1.1.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-starter/1.1.1/d0f14dd5e6cee6adc3d2bfee4c0a879dced80552/mybatis-spring-boot-starter-1.1.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mybatis:mybatis-spring:1.3.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/1.3.0/d1dbdc46cac543447ffd5aeda59f1a9bb34f0912/mybatis-spring-1.3.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mybatis:mybatis:3.4.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis/3.4.0/1b37a54d8ab403e56cb3ed717c25193474efa226/mybatis-3.4.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.objenesis:objenesis:2.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.1/87c0ea803b69252868d09308b4618f766f135a96/objenesis-2.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.ow2.asm:asm:5.0.3.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.reactivestreams:reactive-streams:1.0.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.reflections:reflections:0.9.10.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.reflections/reflections/0.9.10/c7f4ea230aedc757ca1499ebcfb2953c81cf8b67/reflections-0.9.10.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.skyscreamer:jsonassert:1.3.0.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.skyscreamer/jsonassert/1.3.0/d5c250eb122496866de36dc84f98e2945845ecdd/jsonassert-1.3.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.slf4j:jcl-over-slf4j:1.7.21.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.21/331b564a3a42f002a0004b039c1c430da89062cd/jcl-over-slf4j-1.7.21.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.slf4j:jul-to-slf4j:1.7.21.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.21/2f22c882ffa479d1e9ff4eb0e8e2c29f2a0871ed/jul-to-slf4j-1.7.21.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.slf4j:log4j-over-slf4j:1.7.21.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.21/b3700d97464d99bdcd42c0177d6e7951c94d75ff/log4j-over-slf4j-1.7.21.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.slf4j:slf4j-api:1.7.21.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.21/139535a69a4239db087de9bab0bee568bf8e0b70/slf4j-api-1.7.21.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.amqp:spring-amqp:1.6.5.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.amqp/spring-amqp/1.6.5.RELEASE/d68cdc39afbefebcf8206cdcc5c1d6e50c4e6eba/spring-amqp-1.6.5.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.amqp:spring-rabbit:1.6.5.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.amqp/spring-rabbit/1.6.5.RELEASE/233c5fbb2a7adb5b24da874b65794f08445a1ebe/spring-rabbit-1.6.5.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-actuator:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-actuator/1.4.2.RELEASE/698c1560faa11be98e590eb4e87cc5abb55a2802/spring-boot-actuator-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.4.2.RELEASE/368e464f9ce4622722ce0944cc4ba6fa71332b68/spring-boot-autoconfigure-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-devtools:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/1.4.2.RELEASE/8d3c1db491a6b29aa39cf81c2c7d635909bf0872/spring-boot-devtools-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-actuator:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-actuator/1.4.2.RELEASE/43177cefa7697ae38236a5e1852539ce03e071c5/spring-boot-starter-actuator-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-amqp:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-amqp/1.4.2.RELEASE/4df7b83f23853d121267d7bae4719a694f9662f2/spring-boot-starter-amqp-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-aop:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-aop/1.4.2.RELEASE/8046bac04ea163a93b27268fbee16164dbafad5/spring-boot-starter-aop-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-integration:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-integration/1.4.2.RELEASE/1abfd6edf0c1ca4d5ddf48da1006bcb1d78be380/spring-boot-starter-integration-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.4.2.RELEASE/706b5cd5996bd8c03248c3236e90e9d2d7c948db/spring-boot-starter-jdbc-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-jersey:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jersey/1.4.2.RELEASE/dc2bfa6f7170a89b0461bf623347e8be5c9b3607/spring-boot-starter-jersey-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-logging:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/1.4.2.RELEASE/2799c67340d6a27af5f17a7ecdfa1f50cb1d152d/spring-boot-starter-logging-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-test:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-test/1.4.2.RELEASE/564b798522d811461ce6c8792c063ae2308898f8/spring-boot-starter-test-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/1.4.2.RELEASE/1ab1939bb566bbaf25cc1f50cdf955b6c927c4d3/spring-boot-starter-tomcat-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-validation:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-validation/1.4.2.RELEASE/ebd0c4cfb1552cec80e5c7644c1a502c64abec70/spring-boot-starter-validation-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-web:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/1.4.2.RELEASE/7145c258f8fba4067f9e3880fad23586c9b8ff10/spring-boot-starter-web-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/1.4.2.RELEASE/c6068dc9688c12509bb1c36fcf6ff4817d46cce2/spring-boot-starter-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/1.4.2.RELEASE/12733afdfae9edcb0a1a2e98c3b07815986d1ee4/spring-boot-test-autoconfigure-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-test:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/1.4.2.RELEASE/c94582bccb1dbc5599bd8d59a703e3650f9adcf3/spring-boot-test-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot:1.4.2.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.4.2.RELEASE/19ecf2582f58722c08147918982227885f6e31b1/spring-boot-1.4.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.hateoas:spring-hateoas:0.20.0.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.hateoas/spring-hateoas/0.20.0.RELEASE/623a5983010e905090f69e55f4e0a63fba195085/spring-hateoas-0.20.0.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.integration:spring-integration-core:4.3.5.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-core/4.3.5.RELEASE/5fb7134905e7cd34dfd6e95b4e58102b0e09cf38/spring-integration-core-4.3.5.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.integration:spring-integration-file:4.3.5.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-file/4.3.5.RELEASE/65ed4cb1f5daab53e647c4263852f16a8baa204c/spring-integration-file-4.3.5.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.integration:spring-integration-java-dsl:1.1.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-java-dsl/1.1.4.RELEASE/81bf51b69fc07afa0f1a6c3ffa1bbd97aa18158c/spring-integration-java-dsl-1.1.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.integration:spring-integration-jmx:4.3.5.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-jmx/4.3.5.RELEASE/ceece707db7d0c1d3f7bb42ee43e54c72a2eff9f/spring-integration-jmx-4.3.5.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.plugin:spring-plugin-core:1.2.0.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.plugin/spring-plugin-core/1.2.0.RELEASE/f380e7760032e7d929184f8ad8a33716b75c0657/spring-plugin-core-1.2.0.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.plugin:spring-plugin-metadata:1.2.0.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.plugin/spring-plugin-metadata/1.2.0.RELEASE/97223fc496b6cab31602eedbd4202aa4fff0d44f/spring-plugin-metadata-1.2.0.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.retry:spring-retry:1.1.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework.retry/spring-retry/1.1.4.RELEASE/87dd3063d6d6383674aeddbddef264540f71b830/spring-retry-1.1.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-aop:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.4.RELEASE/43f3d4a43a8dcc91137e092b981101332a645e4b/spring-aop-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-beans:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.4.RELEASE/4fbf4327d6c7f81c821f2d56e8695d394c7b930a/spring-beans-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-context:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.4.RELEASE/c8086505715fba4927fed3d7e3314692817413b6/spring-context-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-core:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.4.RELEASE/da373e491d3863477568896089ee9457bc316783/spring-core-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-expression:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.4.RELEASE/5573955b5373669be0e352a1eb5dc9c87b069cb6/spring-expression-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-jdbc:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.4.RELEASE/42175d194cf6aa7c716c0887f30255e5c0a5262c/spring-jdbc-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-messaging:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-messaging/4.3.4.RELEASE/8e5cb19add90964790ca20bf398d4a9d9f0c1ede/spring-messaging-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-test:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.3.4.RELEASE/a4e28d4eaaa6174928c3edf784faba78bfc046ec/spring-test-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-tx:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.4.RELEASE/303d00338193c04312426325121572d2fc1d4ec5/spring-tx-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-web:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.4.RELEASE/719f05404ba8a9de1516398d31d9622042584f0d/spring-web-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-webmvc:4.3.4.release.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.4.RELEASE/79529d7ea72045e92e3dbeb0f4f6919093f47137/spring-webmvc-4.3.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.xerial:sqlite-jdbc:3.16.1.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.xerial/sqlite-jdbc/3.16.1/72540738ecee65b58ef5a6dbc125e83223716b17/sqlite-jdbc-3.16.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.yaml:snakeyaml:1.17.classpath">
+    <pathelement location="C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.17/7a27ea250c5130b2922b86dea63cbb1cc10a660c/snakeyaml-1.17.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/.idea/modules/module_springboot.xml"/>
+  
+  <import file="${basedir}/.idea/modules/module_springboot_main.xml"/>
+  
+  <import file="${basedir}/.idea/modules/module_springboot_test.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.springboot, clean.module.springboot_main, clean.module.springboot_test" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.springboot, compile.module.springboot_main, compile.module.springboot_test" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

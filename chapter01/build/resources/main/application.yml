@@ -1,0 +1,31 @@
+server:
+  port: 8081
+  context-path: /api/
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://220.192.168.231:3306/test
+    username: root
+    password: 123456
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
+    database: mysql
+
+logging:
+  file: springboot.log
+  level:
+    org:
+      mybatis: TRACE
+      springframework: INFO
+    online:
+      zhaopei:
+        mypoject: TRACE
