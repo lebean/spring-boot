@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Name:City
- * Description:
+ * Description: 数据实体City
  * Author:leix
  * Time: 2017/3/28 14:02
  */

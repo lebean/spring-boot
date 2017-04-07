@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Name: CityServiceImpl
+ * Description:
+ * Author:leix
+ * Time: 2017/3/28 14:02
+ */
 @Service
 @Transactional
 public class CityServiceImpl implements CityService {

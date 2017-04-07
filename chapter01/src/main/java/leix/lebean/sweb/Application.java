@@ -7,9 +7,14 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
+/**
+ * Name: Application
+ * Description: Application类
+ * Author:leix
+ * Time: 2017/3/28 14:13
+ */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer  {
-
     @Autowired
     ApplicationContext context;
     @Override
