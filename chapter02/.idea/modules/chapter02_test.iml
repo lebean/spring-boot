@@ -9,13 +9,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: org.springframework.security.oauth: spring-security-oauth2:" level="project" />
+    <orderEntry type="module" module-name="chapter02_main" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:1.5.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-actuator:1.5.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.24" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-redis:1.5.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-amqp:1.5.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-integration:1.5.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.integration:spring-integration-file:4.3.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-messaging:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-devtools:1.5.2.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:5.1.41" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" name="Gradle: io.springfox:springfox-swagger-ui:2.2.2" level="project" />
@@ -39,7 +42,9 @@
     <orderEntry type="library" name="Gradle: javax.transaction:javax.transaction-api:1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-jpa:1.11.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aspects:4.3.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-devtools:1.5.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-redis:1.8.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: redis.clients:jedis:2.9.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-messaging:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.amqp:spring-rabbit:1.7.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.integration:spring-integration-core:4.3.8.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.integration:spring-integration-java-dsl:1.2.1.RELEASE" level="project" />
@@ -71,7 +76,7 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-test:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: ch.qos.logback:logback-classic:1.1.11" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.24" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jul-to-slf4j:1.7.24" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.24" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat.embed:tomcat-embed-core:8.5.11" level="project" />
@@ -95,6 +100,10 @@
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-commons:1.13.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-orm:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-tx:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-keyvalue:1.2.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-oxm:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context-support:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-pool2:2.4.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.amqp:spring-amqp:1.7.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.rabbitmq:http-client:1.1.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.rabbitmq:amqp-client:4.0.2" level="project" />
@@ -111,12 +120,6 @@
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.6" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Gradle: org.ow2.asm:asm:5.0.3" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-security:1.5.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-actuator:1.5.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:4.2.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:1.5.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:4.2.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:4.2.2.RELEASE" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="chapter02_main" />
 </module>

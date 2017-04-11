@@ -1,65 +1,43 @@
-> SpringBoot这个框架我一直比较喜欢，但迫于没有时间整理，一直延续到现在才来整理框架。这个文章将是一个系列，从基础到复杂，后面将会不断推出系列内容。所有示例都使用Intellij IDEA编写，项目构建方式选择了Gradle
+> 这是篇文章是建立在[上一篇文章](../Chapter02)基础之上的，前面讲了使用SpringBoot并集成了jpa、swagger2、logging，这篇文章将讲述在此基础上集成redis缓存
 
-> 本篇文章主要介绍持久层、API文档、基础日志的配制。在数据持久层上我选择的是Spring-data-jpa，使用它非常方便，可少写很多代码，效率也不错，而且还是spring的亲儿子；api文档选择的是Swagger UI2，Swagger可以自动生成API文档，在文档界面上还可以测试，给开发代来很多方便的；日志这一部分的话就用了比较基础的东西了，会把运行日志输出到指定文件中，方便维护时查找问题。
+## Redis缓存
 
-### 第一步，创建项目并配制build.gradle文件
-通过Intellij IDEA新建一个Gradle项目，在build.gradle文件中添加项目配制，执行一次Refresh all Gradle Projects
-```
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
-    }
-}
-repositories {
-    jcenter()
-}
-dependencies {
-    compile "org.springframework.boot:spring-boot-starter"
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-amqp'
-    compile 'org.springframework.boot:spring-boot-starter-integration'
-    compile 'org.springframework.integration:spring-integration-file:4.3.5.RELEASE'
-    compile 'org.springframework.boot:spring-boot-devtools'
-    compile 'mysql:mysql-connector-java'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile "io.springfox:springfox-swagger-ui:2.2.2"
-    compile "io.springfox:springfox-swagger2:2.2.2"
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-}
-```
-### 第二步，创建项目文件目录
-1. 创建java文件夹，在src文件夹下创建文件夹“/main/java”
-2. 创建resources文件夹，在src文件夹下创建文件夹“/main/resources”
+​	Redis是很好的缓存框架，支持集群。在很多系统中为了提升高并发业务的体验，都会使用缓存框架，例如各式各样的秒杀系统。
 
-### 第三步，配制application.yml文件
-在“src/main/resources/”文件夹下新建文件“application.yml”，并修改其中内容。
-> server：服务器相关设定，在这晨设定了服务启动后的端口号和服务的根地址
-> spring.datasource：配制系统数据源
-> spring.jpa：设置jpa的基础信息
-> logging：调协日志的信息，logging.file设置日志文件的存放，可以是“D:\test.logging”这种方式
+### 第1步，在服务器上安装redis
+
+​	因为我当前使用的电脑是windows的，所以我就只讲讲在windows上redis的安装了，
+
+1.   到[redis-windows-x64.3.2.100](https://github.com/MSOpenTech/redis/releases/tag/win-3.2.100)下载zip包到电脑上并解压7
+
+2.  使用cmd配置服务，cd到redis-windows-x64.3.2.100目录下，执行以下代码，在系统服务列表中就可以看到redis服务了
+
+   ```
+   redis-server --service-install redis.windows-service.conf --loglevel verbose
+   ```
+
+3.  可以在系统服务列表中启动或停止redis服务，也可以cd到redis-windows-x64.3.2.100目录下执行以下命令
+
+   ```
+   redis-server --service-start//启动
+   redis-server --service-stop//停止
+   redis-server --service-uninstall//卸载
+   ```
+
+### 第2步，在application.yml中配制redis服务器信息
+
+​	在application.yml中配制redis服务器的地址、端口号乖参数
 
 ```
-server:
-  port: 8081
-  context-path: /api/
-
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://220.192.001.001:3306/test
+    url: jdbc:mysql://220.192.168.231:3306/test
     username: root
     password: 123456
     initialSize: 5
     minIdle: 5
     maxActive: 20
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -67,113 +45,98 @@ spring:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
     show-sql: true
     database: mysql
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    pool:
+      max-idle: 8
+      max-active: 8
+      max-wait: -1
+      min-idle: 0
+```
 
-logging:
-  file: springboot.log
-  level:
-    org:
-      mybatis: TRACE
-      springframework: INFO
-    online:
-      zhaopei:
-        mypoject: TRACE
+### 第3步，在java文件配制缓存
+
+​	在config包下新建RedisCacheConfig.java，继承CachingConfigurerSupport，具体内容如下：
+
 ```
-### 第四步，添加Application.java文件
-在项目java包中添加Application.java文件，并初始化内容
-```
-package leix.lebean.sweb;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.ApplicationContext;
-@SpringBootApplication
-public class Application extends SpringBootServletInitializer  {
+/**
+ * Name:RedisCacheConfig
+ * Description:
+ * Author:leix
+ * Time: 2017/4/10 13:48
+ */
+@Configuration
+@EnableCaching
+public class RedisCacheConfig extends CachingConfigurerSupport {
+
     @Autowired
-    ApplicationContext context;
+    private JedisConnectionFactory jedisConnectionFactory;
+
+    @Bean
+    public RedisTemplate redisTemplate() {
+        StringRedisTemplate template = new StringRedisTemplate(jedisConnectionFactory);
+        //定义key序列化方式
+        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+        //定义value的序列化方式
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        template.setKeySerializer(redisSerializer);
+        template.setHashKeySerializer(redisSerializer);
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    public CacheManager cacheManager(@SuppressWarnings("rawtypes") RedisTemplate redisTemplate) {
+        RedisSerializer keySerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(keySerializer);
+        redisTemplate.setHashKeySerializer(keySerializer);
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        return cacheManager;
+    }
+
+    @Bean
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(Application.class);
+    public KeyGenerator keyGenerator() {
+        return (target, method, objects) -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(target.getClass().getName());
+            sb.append(":" + method.getName() + ":");
+            for (Object obj : objects) {
+                sb.append(obj.toString());
+            }
+            return sb.toString();
+        };
     }
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
-    }
+
 }
 ```
-**到这里所有的配制就完成了，剩下的就是数据层的使用了，下面介绍一上jpa的使用** 
-> 创建数据实体
+
+​	jedisConnectionFactory会提示“could not autowire.no beans of JedisConnectionFactory”，我测试了这个不影响运行。
+
+### 第4步，在需要缓存的方法上添加缓存注解
 
 ```
-package leix.lebean.sweb.model;
-import javax.persistence.*;
-import java.io.Serializable;
-/**
- * Name:City
- * Description:
- * Author:leix
- * Time: 2017/3/28 14:02
- */
-@Entity
-@Table(name = "city")
-public class City  implements Serializable{
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "state")
-    private String state;
-    @Column(name = "country")
-    private String country;
-    public int getId() {return id;}
-
-    public void setId(int id) {this.id = id;}
-    public String getName() {return name;}
-    public void setName(String name) { this.name = name;}
-    public String getState() {return state;}
-    public void setState(String state) {this.state = state;}
-    public String getCountry() {return country;}
-    public void setCountry(String country) {this.country = country;}
-}
-```
-> 创建数据处理仓库，jpa的具体语法在这里不详细讲述了，后面会专门写一篇文章来介绍
-
-```
-package leix.lebean.sweb.repository;
-import leix.lebean.sweb.model.City;
-import org.springframework.data.jpa.repository.JpaRepository;
-/**
- * Name:CityRepository
- * Description:
- * Author:leix
- * Time: 2017/3/28 14:13
- */
-public interface CityRepository extends JpaRepository<City, Integer> {
-    City findById(int id);
-}
-```
-> 数据处理仓库的调用
-
-```
-package leix.lebean.sweb.service.impl;
-
-import leix.lebean.sweb.model.City;
-import leix.lebean.sweb.repository.CityRepository;
-import leix.lebean.sweb.service.CityService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 @Service
 @Transactional
 public class CityServiceImpl implements CityService {
+
     @Autowired
     CityRepository cityRepository;
+
     @Override
+    @Cacheable(value = "city")
     public City findById(int id) {
         return cityRepository.findById(id);
     }
 }
 ```
+
+> 这里可能有个小问题，我怎么知道缓存是否配制成功了呢？答案是可以通过日志来判定，在swagger-ui.html界面上，对一个服务测试，如果没有缓存的话，会一直看到sql执行的日志，如果有缓存的话只会在第一次执行时有sql执行操作
+

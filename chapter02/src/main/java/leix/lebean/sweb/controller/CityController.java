@@ -9,6 +9,11 @@ import leix.lebean.sweb.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,5 +79,34 @@ public class CityController {
     @ApiImplicitParam(name = "city", value = "城市信息数据实体")
     public City addCity(@RequestBody City city) {
         return city;
+    }
+
+    @GetMapping("/cities/{id}/img")
+    @ApiOperation(value = "城市详情", notes = "根据城市id获取城市详细信息")
+    @ApiImplicitParam(name = "id", paramType = "path", value = "城市编号", required = true, defaultValue = "1", dataType = "Integer")
+    public void getCityImageById(HttpServletResponse response, @PathVariable(value = "id") int id) {
+        File file=new File("E:/note.txt");
+        FileInputStream fileInputStream = null;
+        if (file != null && file.exists()) {
+            try {
+                OutputStream out = response.getOutputStream();
+                fileInputStream = new FileInputStream(file);
+                byte[] b = new byte[fileInputStream.available()];
+                fileInputStream.read(b);
+                out.write(b);
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (fileInputStream != null) {
+                    try {
+                        fileInputStream.close();
+                        file = null;
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 }
