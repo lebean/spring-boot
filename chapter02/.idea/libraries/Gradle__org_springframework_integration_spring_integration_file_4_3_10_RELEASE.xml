@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.integration:spring-integration-file:4.3.10.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-file/4.3.10.RELEASE/bda32b4aa969926d7134e78bb8691182c97a0849/spring-integration-file-4.3.10.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-file/4.3.10.RELEASE/2a2ddbd661cef99c96ac7b508fe0ce0c7aa57e03/spring-integration-file-4.3.10.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

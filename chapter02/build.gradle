@@ -1,33 +1,52 @@
 apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
+jar {
+    baseName = 'xrest'
+    version = '0.0.1-SNAPSHOT'
+}
 
 buildscript {
+    ext {
+        springBootVersion = '1.5.4.RELEASE'
+        jjwtVersion = '0.7.0'
+        swaggerVersion='2.7.0'
+        gsonVersion='2.8.1'
+        springIntegrationFileVersion='4.3.10.RELEASE'
+    }
+
     repositories {
         jcenter()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
+
 repositories {
     jcenter()
 }
+
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter"
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-data-redis'
-    compile 'org.springframework.boot:spring-boot-starter-amqp'
-    compile 'org.springframework.boot:spring-boot-starter-integration'
-//    compile 'org.springframework.boot:spring-boot-starter-security'
-//    compile 'org.springframework.security.oauth: spring-security-oauth2'
-    compile 'org.springframework.integration:spring-integration-file:4.3.5.RELEASE'
-    compile 'org.springframework.boot:spring-boot-devtools'
-    compile 'mysql:mysql-connector-java'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile "io.springfox:springfox-swagger-ui:2.2.2"
-    compile "io.springfox:springfox-swagger2:2.2.2"
+    compile ("org.springframework.boot:spring-boot-starter")
+    compile ("org.springframework.boot:spring-boot-starter-actuator")
+    compile ("org.springframework.boot:spring-boot-starter-web")
+    compile ("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile ("org.springframework.boot:spring-boot-starter-amqp")
+    compile ("org.springframework.boot:spring-boot-starter-integration")
+    compile ("org.springframework.integration:spring-integration-file:${springIntegrationFileVersion}")
+    compile ("org.springframework.boot:spring-boot-devtools")
+    compile ("org.springframework.boot:spring-boot-starter-data-redis")
+    compile ("org.springframework.boot:spring-boot-starter-security")
+    compile ("io.jsonwebtoken:jjwt:${jjwtVersion}")
+
+
+    compile ("mysql:mysql-connector-java")
+    compile ("com.google.code.gson:gson:${gsonVersion}")
+    compile ("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+    compile ("io.springfox:springfox-swagger2:${swaggerVersion}")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
