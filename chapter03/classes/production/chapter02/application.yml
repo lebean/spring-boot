@@ -1,0 +1,54 @@
+server:
+  port: 8081 #服务端口号
+  context-path: /api/ #api根路径
+
+spring:
+  datasource: #数据库源
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://220.192.168.231:3306/test
+    username: root
+    password: 123456
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+  jpa: #jpa数据操作
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
+    database: mysql
+  redis: #redis 缓存设置
+    database: 0
+    host: localhost #缓存服务器
+    port: 6379 #缓存服务器端口
+    pool:
+      max-idle: 8
+      max-active: 8
+      max-wait: -1
+      min-idle: 0
+
+#jwt
+jwt:
+  header: Authorization
+  secret: wndfer
+  expiration: 604800
+  tokenHead: "Bearer "
+
+#logging
+logging: #与日志相关的设置
+  file: springboot.log #日志文件路径，可以设置全路径
+  level:
+    org:
+      mybatis: TRACE
+      springframework: INFO
+    leix:
+      lebean:
+        sweb: TRACE
+
+#swagger
+swagger: #与swagger相关的设置
+  title: RESTful API #api文档标题
+  description: 项目API文档 #api文档说明
+  version: 1.0 #api版本
+  basePackage: leix.lebean.sweb #api基础包名

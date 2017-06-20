@@ -2,4 +2,5 @@
 # 目录
 1. [chapter01](/chapter01/README.md) 在springboot中集成spring-data-jpa swagger2 logging[源码](https://github.com/lebean/spring-boot/tree/master/chapter01)
 2. [chapter02](/chapter02/README.md) 在springboot中集成jjwt、 spring-boot-starter-security、spring-boot-starter-data-redis，实现api权限难与缓存    [源码](https://github.com/lebean/spring-boot/tree/master/chapter02)
+3. [chapter03](/chapter03/README.md) 为API添加统一的异常处理    [源码](https://github.com/lebean/spring-boot/tree/master/chapter03)
 
