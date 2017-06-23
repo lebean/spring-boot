@@ -8,7 +8,7 @@
 
 ​	新建一个RESTException类，在主动招聘异常时，就抛出一个RESTException类实例。它包含两个属性，code和message。code是要抛出的异常代码用http状态码来表示，message是想要告诉前端的信息，如“城市编号不存在”之类的。
 
-```
+```java
 package leix.lebean.sweb.common.core;
 
 /**
@@ -45,7 +45,7 @@ public class RESTException extends Exception {
 
 创建一个异常处理器，它有两个异常处理方法，一个处理主动抛出的异常，一个处理非主动异常。
 
-```
+```java
 package leix.lebean.sweb.common.config;
 
 import leix.lebean.sweb.common.core.RESTException;
@@ -107,7 +107,7 @@ public class ExtExceptionHandler {
 
 ### 第3步，在业务中抛出异常
 
-```
+```java
 thow new RESTException(HttpStatus.INTERNAL_SERVER_ERROR.value(),"城市编号不存在");
 ```
 
