@@ -1,0 +1,23 @@
+server:
+  port: 8071
+  context-path: /api/
+spring:
+  datasource:
+    driverClassName: org.sqlite.JDBC
+    url: jdbc:sqlite:F:\\Lei\\github\\spring-boot\\chapter04\\database.db
+    username:
+    password:
+  jpa:
+    database-platform: top.leix.restful.config.SQLiteDialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+logging:
+  file: springboot.log
+  level:
+    org:
+      mybatis: TRACE
+      springframework: INFO
+    online:
+      zhaopei:
+        mypoject: TRACE
